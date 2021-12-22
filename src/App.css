@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.deeev{
+.deeev{ 
   display: flex;
   margin-top: 3rem;
 }
@@ -180,7 +180,7 @@ input[type=text]{
 }
 .inpbaby{
   position: absolute;
-  margin-left: 74.7rem;
+  margin-left: 76.5rem;
   width: 17.8rem;
 }
 .mg{
@@ -190,3 +190,11 @@ input[type=text]{
   margin-top: 0.6rem;
   margin-left: 0.6rem;
 }
+.playb{
+  border-top: 1rem;
+  border-bottom: 1rem;
+  border-right: 1rem;
+  border-left: 1rem;
+  border-width: 1rem;
+  border-color: black;
+} 

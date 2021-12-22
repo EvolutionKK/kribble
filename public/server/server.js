@@ -1,21 +1,17 @@
-const express = require("express")
-const http = require("http")
-const axios = require("axios")
-const mongoose = require("mongoose")
-const socket = require("socket.io")
-const app = express();
+const io = require("socket.io")(http)
+const app = require("express")()
+const http = require("http").createServer(app)
 
-const port = process.env.PORT || 3001;
-var server = http.createServer(app);
-var io = socket(server)
-app.use(express.json());
-const DB = 'mongodb+srv://karan:karan8278@cluster0.t4q3i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-mongoose.connect(DB).then(()=> {
-    console.log("Connection Successful!")
-}).catch((e)=>{
-    console.log(e)
+io.on('connection', socket => {
+    socket.on('message', ({name}) => {
+        io.emit("message", {name})
+    })
+})
+http.listen(4000, function(){
+    console.log("listening on port 4000")
 })
 
-server.listen(port, "0.0.0.0", ()=>{
-    console.log("server running on  port" + port)
-})
+const name = document.getElementById('titi')
+
+const socket = io();
+
