@@ -2,11 +2,11 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http)
 const cors = require('cors');
-const {Join, getUser, Current} = require('./public/src/func.js')
-const {messageFormater} = require("./public/src/chat");
+const {Join, getUser, Current} = require('./src/func.js.js')
+const {messageFormater} = require("./src/chat");
 const PORT = process.env.PORT || 3000;
 let word = '';
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
 io.on('connection', function(socket) {
   console.log('user connected');
   socket.on('user', (abc) => {
