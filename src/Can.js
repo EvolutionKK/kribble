@@ -1,4 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import io from 'socket.io-client'
+
+const socket = io.connect('http://localhost:4000', { transports: ['websocket', 'polling', 'flashsocket'] })
 
 const colors = [
   "red",
@@ -43,12 +46,34 @@ function Can() {
       ctx.current.closePath();
       ctx.current.stroke();
 
+      console.log(x, y)
+      socket.emit('drawing', {
+        color: selectedColor,
+        x1: lastPosition.x,
+        y1: lastPosition.y,
+        x: x,
+        y: y
+      })
+      socket.on('drawing', (drew) => {
+        ctx.current.beginPath();
+        ctx.current.strokeStyle = drew.color;
+        ctx.current.lineWidth = 10;
+        ctx.current.lineJoin = 'round';
+        ctx.current.moveTo(drew.x1, drew.y1);
+        ctx.current.lineTo(drew.x, drew.y);
+        ctx.current.closePath();
+        ctx.current.stroke();
+        console.log(drew)
+      })
+
       setPosition({
         x,
         y
       })
     }
   }, [lastPosition, mouseDown, selectedColor, setPosition])
+
+
 
   const download = async () => {
     const image = canvasRef.current.toDataURL('image/png');
@@ -66,8 +91,8 @@ function Can() {
 
   const onMouseDown = (e) => {
     setPosition({
-      x: e.pageX-305,
-      y: e.pageY-225
+      x: e.pageX - 305,
+      y: e.pageY - 225
     })
     setMouseDown(true)
   }
@@ -77,7 +102,7 @@ function Can() {
   }
 
   const onMouseMove = (e) => {
-    draw(e.pageX-305, e.pageY-225)
+    draw(e.pageX - 305, e.pageY - 225)
   }
   console.log(lastPosition, setPosition)
   return (
