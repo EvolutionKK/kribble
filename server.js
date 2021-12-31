@@ -3,7 +3,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http)
 const cors = require('cors');
 const {Join, getUser, Current} = require('./src/func.js.js.js')
-const {messageFormater} = require("./chat");
+const {messageFormater} = require("./src/chat");
 const PORT = process.env.PORT || 3000;
 let word = '';
 app.use(express.static(path.join(__dirname, 'kribble')));
