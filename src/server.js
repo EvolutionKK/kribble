@@ -4,7 +4,7 @@ const io = require('socket.io')(http)
 const cors = require('cors');
 const {Join, getUser, Current} = require('./func.js')
 const {messageFormater} = require("./chat");
-const PORT = 4000 || process.env.PORT;
+// const PORT = 4000 || process.env.PORT;
 let word = '';
 
 io.on('connection', function(socket) {
@@ -35,7 +35,7 @@ io.on('connection', function(socket) {
 
 app.use(cors())
 
-http.listen(PORT, function(){
+http.listen(4000, function(){
   console.log('listening on *:4000');
 })
 
