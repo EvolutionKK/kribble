@@ -3,10 +3,10 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http)
 const cors = require('cors');
 const {Join, getUser, Current} = require('./src/func.js.js')
-const {messageFormater} = require("./src/chat");
+const {messageFormater} = require("./public/src/chat");
 const PORT = process.env.PORT || 3000;
 let word = '';
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', function(socket) {
   console.log('user connected');
   socket.on('user', (abc) => {
