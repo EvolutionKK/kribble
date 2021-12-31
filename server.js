@@ -2,11 +2,11 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http)
 const cors = require('cors');
-const {Join, getUser, Current} = require('./func.js')
-const {messageFormater} = require("./chat");
-// const PORT = 4000 || process.env.PORT;
+const {Join, getUser, Current} = require('./public/src/func.js')
+const {messageFormater} = require("./public/src/chat");
+const PORT = process.env.PORT || 3000;
 let word = '';
-app.use(express.static(path.join(__dirname, 'kribble')));
+app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', function(socket) {
   console.log('user connected');
   socket.on('user', (abc) => {
@@ -35,7 +35,7 @@ io.on('connection', function(socket) {
 
 app.use(cors())
 
-http.listen(4000, function(){
+http.listen(PORT, function(){
   console.log('listening on *:4000');
 })
 
