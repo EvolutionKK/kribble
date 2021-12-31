@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import { useState } from 'react';
 import io from 'socket.io-client'
 
-const socket = io.connect('http://localhost:4000', { transports: ['websocket', 'polling', 'flashsocket'] })
+const socket = io.connect('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] })
 
 function Play(props) {
     const [guess, setGuess] = useState('');
