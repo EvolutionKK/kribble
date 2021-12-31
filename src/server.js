@@ -6,7 +6,7 @@ const {Join, getUser, Current} = require('./func.js')
 const {messageFormater} = require("./chat");
 // const PORT = 4000 || process.env.PORT;
 let word = '';
-
+app.use(express.static(path.join(__dirname, 'kribble')));
 io.on('connection', function(socket) {
   console.log('user connected');
   socket.on('user', (abc) => {
